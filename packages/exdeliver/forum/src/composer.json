@@ -1,0 +1,14 @@
+{
+  "name": "exdeliver/forum",
+  "description": "EXdeliver Forum",
+  "authors": [
+    {
+      "name": "Jason Hoendervanger",
+      "email": "info@exdeliver.nl"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+      "guzzlehttp/guzzle": "~6.2"
+  }
+}
