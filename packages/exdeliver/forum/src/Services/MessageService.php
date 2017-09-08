@@ -2,7 +2,7 @@
 
 namespace Exdeliver\Forum\Services;
 
-use Exdeliver\Forum\Repositories\DynamicModelRepository;
+use Exdeliver\Forum\Models\Messages;
 
 class MessageService
 {
@@ -10,8 +10,7 @@ class MessageService
 
     public function __construct()
     {
-        $model = new \Exdeliver\Forum\Models\Messages();
-        $this->message_repository = new DynamicModelRepository($model);
+        $this->message_repository = \ForumService::getModel(new Messages());
     }
 
     public function save($data = null, $id = null)
