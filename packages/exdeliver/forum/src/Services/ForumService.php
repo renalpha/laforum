@@ -2,18 +2,19 @@
 
 namespace Exdeliver\Forum\Services;
 
+use Illuminate\Database\Eloquent\Model;
+use Exdeliver\Forum\Repositories\DynamicModelRepository;
+
 class ForumService
 {
-    public $message_repository;
-    public $thread_repository;
-
     public function __construct()
     {
-        $thread = new \Exdeliver\Forum\Models\Threads();
-        $message = new \Exdeliver\Forum\Models\Messages();
 
-        $this->thread_repository = new DynamicModelRepository($thread);
-        $this->message_repository = new DynamicModelRepository($message);
+    }
+
+    public function getModel(Model $model)
+    {
+        return new DynamicModelRepository(new $model);
     }
 
 }
