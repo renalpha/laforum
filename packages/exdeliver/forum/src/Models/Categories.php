@@ -2,8 +2,6 @@
 
 namespace Exdeliver\Forum\Models;
 
-use BaseModel;
-
 class Categories extends BaseModel{
     protected $table = 'forums_categories';
 

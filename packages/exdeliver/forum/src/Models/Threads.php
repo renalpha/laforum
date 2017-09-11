@@ -2,9 +2,7 @@
 
 namespace Exdeliver\Forum\Models;
 
-use BaseModel;
-
-class Threads{
+class Threads extends BaseModel{
     protected $table = 'threads';
 
     public function messages()
