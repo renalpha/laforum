@@ -2,6 +2,8 @@
 
 namespace Exdeliver\Forum\Controllers;
 
+use Exdeliver\Forum\Requests\MessageFormRequest;
+use Exdeliver\Forum\Requests\ThreadFormRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -29,23 +31,16 @@ class ForumController extends Controller
             ->with('thread', $thread);
     }
 
-    public function postThread(Request $request)
+    public function postThread(ThreadFormRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'message' => 'required',
-        ]);
 
         $result = ThreadService::save($request);
 
         // return redirect()->to();
     }
 
-    public function postMessage(Request $request)
+    public function postMessage(MessageFormRequest $request)
     {
-        $this->validate($request, [
-            'message' => 'required',
-        ]);
 
         $message = MessageService::save($request);
 

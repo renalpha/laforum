@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForumSettingsTable extends Migration
+class CreateForumThreadsTable extends Migration
 {
     public function up()
     {
@@ -14,7 +14,7 @@ class CreateForumSettingsTable extends Migration
             $column->string('title');
             $column->string('sub_title')->nullable();
             $column->string('message',4294967295); //longtext for summernote supported images
-            $column->integer('author_id')->index();
+            $column->integer('user_id')->index();
             $column->timestamps();
         });
     }
