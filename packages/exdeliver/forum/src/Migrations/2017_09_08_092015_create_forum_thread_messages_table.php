@@ -16,7 +16,7 @@ class CreateForumThreadMessagesTable extends Migration
             $column->integer('thread_id')->index();
             $column->integer('user_id')->index();
             $column->string('title')->nullable();
-            $column->string('message',4294967295); //longtext for summernote supported images
+            $column->text('message',4294967295); //longtext for summernote supported images
             $column->timestamps();
         });
     }
