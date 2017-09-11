@@ -1,6 +1,7 @@
 <?php namespace Exdeliver\Forum\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Exdeliver\Forum\Repositories\Interfaces\AbstractRepositoryInterface;
 
 abstract class AbstractRepository implements AbstractRepositoryInterface
@@ -8,7 +9,7 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
 
     protected $model;
 
-    public function __construct(Model $model)
+    public function __construct($model)
     {
         $this->model = $model;
     }
