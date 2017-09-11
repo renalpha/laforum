@@ -27,7 +27,10 @@ class AuthenticationController extends Controller
 
     public function login(LoginFormRequest $request)
     {
-
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            // Authentication passed...
+            return redirect()->intended('profile');
+        }
     }
 
     public function register(RegisterFormRequest $request)

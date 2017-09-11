@@ -13,7 +13,7 @@ class CreateForumCategoriesTable extends Migration
             $column->integer('parent_id')->index();
             $column->integer('user_id')->index();
             $column->string('title')->nullable();
-            $column->string('description',65535);
+            $column->text('description',65535);
             $column->timestamps();
         });
     }
