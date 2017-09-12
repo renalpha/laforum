@@ -18,7 +18,7 @@ class AuthenticationController extends Controller
             return redirect()
                 ->to('/');
         }
-        return view('forum::user.login');
+        return view('forum::pages.user.login');
     }
 
     public function getRegister()
@@ -29,12 +29,12 @@ class AuthenticationController extends Controller
                 ->to('/');
         }
 
-        return view('forum::user.register');
+        return view('forum::pages.user.register');
     }
 
     public function getProfile()
     {
-        return view('forum::user.profile');
+        return view('forum::pages.user.profile');
     }
 
     public function login(LoginFormRequest $request)
@@ -46,7 +46,7 @@ class AuthenticationController extends Controller
 
     public function register(RegisterFormRequest $request)
     {
-        $result = \UserService::save($request);
+        //$result = \UserService::save($request);
 
         return json_encode(['status' => $result]);
     }

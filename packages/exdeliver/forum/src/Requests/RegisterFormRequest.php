@@ -8,10 +8,11 @@ class RegisterFormRequest extends FormRequest
     {
         return [
             'username' => 'required|unique:users',
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'password_reminder' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
         ];
     }
 
