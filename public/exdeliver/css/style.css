@@ -5,3 +5,12 @@
     top: 0;
     width: 100%;
 }
+
+header .account {
+    list-style-type: none;
+}
+
+header .account li {
+    float:left;
+    list-style-type: none;
+}

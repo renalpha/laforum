@@ -11,7 +11,7 @@ class CreateForumSettingsTable extends Migration
         {
             $column->increments('id')->unsigned();
             $column->string('title');
-            $column->string('sub_title');
+            $column->string('subtitle');
             $column->timestamps();
         });
     }

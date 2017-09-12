@@ -14,6 +14,7 @@ class ForumServiceProvider extends ServiceProvider
     public function boot()
     {
         include __DIR__.'/routes.php';
+        $this->loadTranslationsFrom(__DIR__.'/Translations', 'forum');
     }
 
     /**
@@ -26,10 +27,12 @@ class ForumServiceProvider extends ServiceProvider
         $this->app->make('Exdeliver\Forum\Controllers\ForumController');
 
         $this->app->bind('forumservice', 'Exdeliver\Forum\Services\ForumService'); // bind service
+        $this->app->bind('userservice', 'Exdeliver\Forum\Services\UserService'); // bind service
         $this->app->bind('threadservice', 'Exdeliver\Forum\Services\ThreadService'); // bind service
         $this->app->bind('messageservice', 'Exdeliver\Forum\Services\MessageService'); // bind service
 
         $this->loadViewsFrom(__DIR__.'/Views', 'forum');
         $this->loadMigrationsFrom(__DIR__.'/Migrations');
+
     }
 }

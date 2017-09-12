@@ -15,7 +15,7 @@ class ForumController extends Controller
 {
     public function getIndex(Request $request)
     {
-        return view('forum::index');
+        return view('forum::pages.index');
     }
 
     public function getThread(Request $request)

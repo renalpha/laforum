@@ -4,6 +4,7 @@ namespace Exdeliver\Forum\Controllers;
 
 use Exdeliver\Forum\Requests\LoginFormRequest;
 use Exdeliver\Forum\Requests\RegisterFormRequest;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -27,14 +28,15 @@ class AuthenticationController extends Controller
 
     public function login(LoginFormRequest $request)
     {
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            // Authentication passed...
-            return redirect()->intended('profile');
-        }
+        $result = \UserService::login($request);
+
+        return json_encode(['status' => $result]);
     }
 
     public function register(RegisterFormRequest $request)
     {
+        $result = \UserService::save($request);
 
+        return json_encode(['status' => $result]);
     }
 }
