@@ -7,10 +7,16 @@ class RegisterFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required',
+            'username' => 'required|unique:users',
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'password_reminder' => 'required|same:password',
         ];
+    }
+
+    public function authorize()
+    {
+        return true;
     }
 }
