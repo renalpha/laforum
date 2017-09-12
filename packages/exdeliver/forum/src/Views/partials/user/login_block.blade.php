@@ -37,7 +37,7 @@
                 loginPost: function (event) {
 
                     let vm = this;
-                    console.log(vm);
+
                     event.preventDefault();
 
                     // perform ajax
