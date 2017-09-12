@@ -7,3 +7,11 @@ Route::post('/login', 'Exdeliver\Forum\Controllers\AuthenticationController@logi
 
 Route::get('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@getRegister');
 Route::post('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@register');
+
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::group(['prefix' => 'user'], function(){
+        Route::get('/profile', 'Exdeliver\Forum\Controllers\AuthenticationController@getProfile');
+    });
+
+});

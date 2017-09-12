@@ -14,6 +14,7 @@ class UserService
     public function login($request = null)
     {
         if (\Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+
             // Authentication passed...
             return true;
         }else{
