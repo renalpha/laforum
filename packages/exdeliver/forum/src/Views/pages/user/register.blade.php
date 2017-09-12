@@ -45,13 +45,13 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            {!! Form::password('password', ['class' => 'form-control input-lg', 'id' => 'password', 'placeholder' => trans('forum::user.password'), 'tabindex' => 5]) !!}
+                            {!! Form::password('password', ['class' => 'form-control input-lg', 'id' => 'password', 'placeholder' => trans('forum::user.password')]) !!}
                             <span v-if="formErrors['password']" class="error">@{{ formErrors['password'][0] }}</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'id' => 'password_confirmation', 'placeholder' => trans('forum::user.password_confirmation'), 'tabindex' => 6]) !!}
+                            {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'id' => 'password_confirmation', 'placeholder' => trans('forum::user.password_confirmation')]) !!}
                             <span v-if="formErrors['password_confirmation']" class="error">@{{ formErrors['password_confirmation'][0] }}</span>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="col-xs-4 col-sm-3 col-md-3">
 					<span class="button-checkbox">
 						<label for="terms"><strong>{!! trans('forum::user.i_agree') !!}</strong></label>
-                        {!! Form::checkbox('terms', 1, false, ['id' => 'terms'])  !!}
+                        {!! Form::checkbox('terms', 1, null,['id' => 'terms'])  !!}
 					</span>
                     </div>
                     <div class="col-xs-8 col-sm-9 col-md-9">

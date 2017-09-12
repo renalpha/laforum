@@ -1,17 +1,21 @@
 <?php
 
-Route::get('/', 'Exdeliver\Forum\Controllers\ForumController@getIndex');
+Route::group(['middleware' => 'web'], function () {
 
-Route::get('/login', 'Exdeliver\Forum\Controllers\AuthenticationController@getLogin');
-Route::post('/login', 'Exdeliver\Forum\Controllers\AuthenticationController@login');
+    Route::get('/', 'Exdeliver\Forum\Controllers\ForumController@getIndex');
 
-Route::get('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@getRegister');
-Route::post('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@register');
+    Route::get('/login', 'Exdeliver\Forum\Controllers\AuthenticationController@getLogin');
+    Route::post('/login', 'Exdeliver\Forum\Controllers\AuthenticationController@login');
 
-Route::group(['middleware' => 'auth'], function(){
+    Route::get('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@getRegister');
+    Route::post('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@register');
 
-    Route::group(['prefix' => 'user'], function(){
-        Route::get('/profile', 'Exdeliver\Forum\Controllers\AuthenticationController@getProfile');
+    Route::group(['middleware' => 'auth'], function () {
+
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/profile', 'Exdeliver\Forum\Controllers\AuthenticationController@getProfile');
+        });
+
     });
 
 });

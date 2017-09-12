@@ -46,7 +46,8 @@ class AuthenticationController extends Controller
 
     public function register(RegisterFormRequest $request)
     {
-        //$result = \UserService::save($request);
+        dd($request->all());
+        $result = \UserService::save($request);
 
         return json_encode(['status' => $result]);
     }
