@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+#login-form {
+    padding:10px;
+    min-width: 290px;
+}
 header .account {
     list-style-type: none;
 }
@@ -13,4 +17,19 @@ header .account {
 header .account li {
     float:left;
     list-style-type: none;
+}
+.dropdown-menu-right {
+    left: auto;
+    right: 0
+}
+
+.dropdown-menu-left {
+    left: 0;
+    right: auto
+}
+
+.error {
+    color: darkred;
+    margin-top: 5px;
+    display: block;
 }
