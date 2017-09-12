@@ -13,11 +13,22 @@ class AuthenticationController extends Controller
 {
     public function getLogin()
     {
+        if(\Auth::check())
+        {
+            return redirect()
+                ->to('/');
+        }
         return view('forum::user.login');
     }
 
     public function getRegister()
     {
+        if(\Auth::check())
+        {
+            return redirect()
+                ->to('/');
+        }
+
         return view('forum::user.register');
     }
 
