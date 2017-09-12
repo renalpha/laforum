@@ -22,35 +22,37 @@
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             {!! Form::text('first_name', null, ['class' => 'form-control input-lg', 'id' => 'first_name', 'placeholder' => trans('forum::user.first_name'), 'tabindex' => 1, 'v-model' => 'registerForm.first_name']) !!}
-                            <span v-if="formErrors['first_name']" class="error">@{{ formErrors['first_name'] }}</span>
+                            <span v-if="formErrors['first_name']" class="error">@{{ formErrors['first_name'][0] }}</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             {!! Form::text('last_name', null, ['class' => 'form-control input-lg', 'id' => 'last_name', 'placeholder' => trans('forum::user.last_name'), 'tabindex' => 2, 'v-model' => 'registerForm.last_name']) !!}
-                            <span v-if="formErrors['last_name']" class="error">@{{ formErrors['last_name'] }}</span>
+                            <span v-if="formErrors['last_name']" class="error">@{{ formErrors['last_name'][0] }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     {!! Form::text('username', null, ['class' => 'form-control input-lg', 'id' => 'username', 'placeholder' => trans('forum::user.username'), 'tabindex' => 3, 'v-model' => 'registerForm.username']) !!}
-                    <span v-if="formErrors['username']" class="error">@{{ formErrors['username'] }}</span>
+                    <span v-if="formErrors['username']" class="error">@{{ formErrors['username'][0] }}</span>
 
                 </div>
                 <div class="form-group">
                     {!! Form::text('email', null, ['class' => 'form-control input-lg', 'id' => 'email', 'placeholder' => trans('forum::user.email'), 'tabindex' => 4, 'v-model' => 'registerForm.email']) !!}
-                    <span v-if="formErrors['email']" class="error">@{{ formErrors['email'] }}</span>
+                    <span v-if="formErrors['email']" class="error">@{{ formErrors['email'][0] }}</span>
 
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             {!! Form::password('password', ['class' => 'form-control input-lg', 'id' => 'password', 'placeholder' => trans('forum::user.password'), 'tabindex' => 5]) !!}
+                            <span v-if="formErrors['password']" class="error">@{{ formErrors['password'][0] }}</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                             {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'id' => 'password_confirmation', 'placeholder' => trans('forum::user.password_confirmation'), 'tabindex' => 6]) !!}
+                            <span v-if="formErrors['password_confirmation']" class="error">@{{ formErrors['password_confirmation'][0] }}</span>
                         </div>
                     </div>
                 </div>
@@ -66,6 +68,7 @@
                     </div>
                 </div>
 
+                <span v-if="formErrors['terms']" class="error">@{{ formErrors['terms'][0] }}</span>
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
@@ -85,22 +88,10 @@
     <script>
         var register = new Vue({
             el: '#register-form',
-            data(){
-                return {
-                    registerForm: {
-                        first_name: '',
-                        last_name: '',
-                        username: '',
-                        email: ''
-                    },
-                    formErrors: {
-                        first_name: '',
-                        last_name: '',
-                        username: '',
-                        email: ''
-                    },
-                    errors: {}
-                }
+            data: {
+                registerForm: {},
+                formErrors: {},
+                errors: {}
             },
 
             methods: {
@@ -116,10 +107,8 @@
                                 //form.submit();
                             })
                             .catch(function (error) {
-
                                 var errors = error.response.data;
-                                this.formErrors = errors;
-                                this.errors = errors;
+                                vm.formErrors = errors;
                             });
                 }
             },

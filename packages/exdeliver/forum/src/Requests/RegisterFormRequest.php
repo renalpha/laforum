@@ -13,6 +13,7 @@ class RegisterFormRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
+            'terms' => 'required',
         ];
     }
 
