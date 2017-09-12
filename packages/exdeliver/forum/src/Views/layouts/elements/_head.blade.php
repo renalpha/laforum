@@ -6,5 +6,6 @@
 <!--<![endif]-->
 <head>
     {!! Html::style('exdeliver/css/bootstrap.min.css') !!}
+    {!! Html::style('exdeliver/css/font-awesome.min.css') !!}
     {!! Html::style('exdeliver/css/style.css') !!}
 </head>

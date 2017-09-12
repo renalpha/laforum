@@ -11,4 +11,9 @@ class LoginFormRequest extends FormRequest
             'password' => 'required'
         ];
     }
+
+    public function authorize()
+    {
+        return true;
+    }
 }
