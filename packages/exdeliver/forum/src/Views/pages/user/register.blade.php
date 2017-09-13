@@ -11,11 +11,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 {!! Form::open(['url' => '/register', 'role' => 'form', 'method' => 'post', 'id' => 'register-form', '@submit.prevent' => 'submitForm']) !!}
-                <ul v-if="errors && errors.length">
-                    <li v-for="error of errors">
-                        @{{error.message}}
-                    </li>
-                </ul>
                 <h3>{!! trans('forum::user.create_account') !!}</h3>
                 <hr class="colorgraph">
                 <div class="row">
@@ -45,13 +40,13 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            {!! Form::password('password', ['class' => 'form-control input-lg', 'id' => 'password', 'placeholder' => trans('forum::user.password')]) !!}
+                            {!! Form::password('password', ['class' => 'form-control input-lg', 'id' => 'password', 'placeholder' => trans('forum::user.password'), 'v-model' => 'registerForm.password']) !!}
                             <span v-if="formErrors['password']" class="error">@{{ formErrors['password'][0] }}</span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                            {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'id' => 'password_confirmation', 'placeholder' => trans('forum::user.password_confirmation')]) !!}
+                            {!! Form::password('password_confirmation', ['class' => 'form-control input-lg', 'id' => 'password_confirmation', 'placeholder' => trans('forum::user.password_confirmation'), 'v-model' => 'registerForm.password_confirmation']) !!}
                             <span v-if="formErrors['password_confirmation']" class="error">@{{ formErrors['password_confirmation'][0] }}</span>
                         </div>
                     </div>
@@ -60,7 +55,7 @@
                     <div class="col-xs-4 col-sm-3 col-md-3">
 					<span class="button-checkbox">
 						<label for="terms"><strong>{!! trans('forum::user.i_agree') !!}</strong></label>
-                        {!! Form::checkbox('terms', 1, null,['id' => 'terms'])  !!}
+                        {!! Form::checkbox('terms', 1, null,['id' => 'terms', 'v-model' => 'registerForm.terms'])  !!}
 					</span>
                     </div>
                     <div class="col-xs-8 col-sm-9 col-md-9">
@@ -69,6 +64,8 @@
                 </div>
 
                 <span v-if="formErrors['terms']" class="error">@{{ formErrors['terms'][0] }}</span>
+
+                <span v-if="formErrors['general']" class="error">@{{ formErrors['general'][0] }}</span>
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
@@ -103,8 +100,14 @@
 
                     axios.post('/register', vm.registerForm)
                             .then(function (response) {
-                                alert('success');
-                                //form.submit();
+                                var result = response.data;
+                                if(result.status == false)
+                                {
+                                    vm.formErrors = result.message;
+                                }else if(result.status == true)
+                                {
+                                    window.location.href = '/profile';
+                                }
                             })
                             .catch(function (error) {
                                 var errors = error.response.data;

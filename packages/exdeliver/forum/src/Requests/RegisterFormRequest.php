@@ -7,12 +7,12 @@ class RegisterFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users,username',
+//            'username' => 'required|unique:users,username',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'terms' => 'nullable',
-            'password' => 'nullable|between:8,255|confirmed',
+            'terms' => 'required',
+            'password' => 'required|between:8,255|confirmed',
         ];
     }
 

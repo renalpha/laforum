@@ -46,6 +46,7 @@
                                 console.log(response);
                             })
                             .catch(function (error) {
+                                console.log('er');
                                 console.log(error);
                             });
                 }
