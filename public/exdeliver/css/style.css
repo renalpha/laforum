@@ -33,3 +33,15 @@ header .account li {
     margin-top: 5px;
     display: block;
 }
+
+.categories-list .title{
+    font-weight: bold;
+    font-size: 100%;
+    display: block;
+}
+
+
+.categories-list .description{
+    font-size: 100%;
+    display: block;
+}
