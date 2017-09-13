@@ -8,10 +8,12 @@
 <div class="form-group">
     <label for="username">{!! trans('forum::user.username') !!}</label>
     {!! Form::text('username', null, ['class' => 'form-control', 'required' => 'required', 'autofocus' => 'true', 'v-model' => 'loginDetails.username']) !!}
+    <span v-if="formErrors['username']" class="error">@{{ formErrors['username'][0] }}</span>
 </div>
 <div class="form-group">
     <label for="password">{!! trans('forum::user.password') !!}</label>
     {!! Form::password('password', ['class' => 'form-control', 'required' => 'required', 'v-model' => 'loginDetails.password']) !!}
+    <span v-if="formErrors['password']" class="error">@{{ formErrors['password'][0] }}</span>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -30,7 +32,9 @@
                     loginDetails: {
                         username: '',
                         password: ''
-                    }
+                    },
+                    formErrors: {},
+                    errors: {}
                 }
             },
             methods: {
@@ -46,8 +50,8 @@
                                 console.log(response);
                             })
                             .catch(function (error) {
-                                console.log('er');
-                                console.log(error);
+                                var errors = error.response.data;
+                                vm.formErrors = errors;
                             });
                 }
 

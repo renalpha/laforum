@@ -10,7 +10,7 @@ class CreateForumCategoriesTable extends Migration
         Schema::create('forum_categories', function(Blueprint $column)
         {
             $column->increments('id')->unsigned();
-            $column->integer('parent_id')->index();
+            $column->integer('parent_id')->index()->nullable();
             $column->integer('user_id')->index();
             $column->string('title')->nullable();
             $column->text('description',65535);

@@ -3,7 +3,7 @@
 namespace Exdeliver\Forum\Models;
 
 class Categories extends BaseModel{
-    protected $table = 'forums_categories';
+    protected $table = 'forum_categories';
 
     public function threads()
     {
@@ -13,5 +13,10 @@ class Categories extends BaseModel{
     public function messages()
     {
         return $this->hasMany(new Messages());
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(new Categories(), 'parent_id');
     }
 }
