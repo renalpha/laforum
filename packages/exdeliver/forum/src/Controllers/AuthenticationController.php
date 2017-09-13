@@ -37,8 +37,18 @@ class AuthenticationController extends Controller
         return view('forum::pages.user.profile');
     }
 
+    public function getLogout()
+    {
+        \Auth::logout();
+
+        return redirect()
+            ->to('/')
+            ->with('status', trans('forum::user.you_have_successfully_been_logged_out'));
+    }
+
     public function login(LoginFormRequest $request)
     {
+
         $result = \UserService::login($request);
 
         return json_encode(['status' => $result]);
@@ -46,9 +56,9 @@ class AuthenticationController extends Controller
 
     public function register(RegisterFormRequest $request)
     {
-        dd($request->all());
         $result = \UserService::save($request);
 
-        return json_encode(['status' => $result]);
+        // expects array as result
+        return json_encode($result);
     }
 }

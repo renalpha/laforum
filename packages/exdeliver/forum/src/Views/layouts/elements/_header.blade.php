@@ -25,7 +25,12 @@
                             <div class="btn-group">
                                 <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"
                                    aria-haspopup="true"
-                                   aria-expanded="false"><i class="fa fa-user"></i> {!! trans('forum::user.account') !!}
+                                   aria-expanded="false"><i class="fa fa-user"></i>
+                                    @if(!\Auth::check())
+                                        {!! trans('forum::user.account') !!}
+                                    @else
+                                        {!! \Auth::user()->name !!}
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     @if(!\Auth::check())
@@ -44,8 +49,8 @@
             <div class="col-md-8">
                 <div id="top-header">
                     <a href="/"><h1>
-                        {!! \ForumService::settings()->title !!}
-                    </h1>
+                            {!! \ForumService::settings()->title !!}
+                        </h1>
                     </a>
                     <h3>
                         {!! \ForumService::settings()->subtitle !!}
@@ -60,7 +65,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <hr />
+                <hr/>
                 @include('forum::layouts.elements._breadcrumbs')
             </div>
         </div>

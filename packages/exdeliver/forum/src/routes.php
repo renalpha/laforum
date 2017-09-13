@@ -13,6 +13,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'user'], function () {
+            Route::get('/logout', 'Exdeliver\Forum\Controllers\AuthenticationController@getLogout');
             Route::get('/profile', 'Exdeliver\Forum\Controllers\AuthenticationController@getProfile');
         });
 
