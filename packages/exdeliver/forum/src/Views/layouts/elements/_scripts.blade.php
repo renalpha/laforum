@@ -4,6 +4,7 @@
 {!! Html::script('exdeliver/js/jquery.min.js') !!}
 {!! Html::script('exdeliver/js/tether.min.js') !!}
 {!! Html::script('exdeliver/js/bootstrap.min.js') !!}
+{!! Html::script('exdeliver/js/scripts.js') !!}
 
 <script>
     Vue.http.interceptors.push(function(request, next) {

@@ -10,6 +10,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@getRegister');
     Route::post('/register', 'Exdeliver\Forum\Controllers\AuthenticationController@register');
 
+    Route::get('/forgot-password', 'Exdeliver\Forum\Controllers\AuthenticationController@getRequestPassword');
+    Route::get('/forgot-password/{code}', 'Exdeliver\Forum\Controllers\AuthenticationController@getRequestPasswordCode');
+    Route::post('/forgot-password', 'Exdeliver\Forum\Controllers\AuthenticationController@requestPassword');
+    Route::post('/request-password', 'Exdeliver\Forum\Controllers\AuthenticationController@requestPassword');
+
     Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'user'], function () {

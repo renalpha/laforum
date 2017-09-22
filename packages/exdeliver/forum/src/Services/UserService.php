@@ -3,6 +3,7 @@
 namespace Exdeliver\Forum\Services;
 
 use App\User;
+use Exdeliver\Forum\Mail\RequestPassword;
 
 class UserService
 {
@@ -38,5 +39,19 @@ class UserService
         }else{
             return false;
         }
+    }
+
+    public function requestPassword($request = null)
+    {
+        $user = User::where('username', $request->username)->first();
+
+        if(isset($user))
+        {
+            \Mail::to($user->email)->send(new RequestPassword($user));
+
+            return ['status' => true, 'message' => trans('forum::user.confirmation_send_successfully')];
+        }
+
+        return ['status' => false, 'message' => trans('forum::user.user_not_exists', ['username' => $request->username])];
     }
 }

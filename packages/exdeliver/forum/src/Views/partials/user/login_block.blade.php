@@ -21,41 +21,12 @@
         <a href="/register" class="btn btn-link float-right">{!! trans('forum::user.create_account') !!}</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <hr />
+        <p>
+        <a href="/forgot-password">{!! trans('forum::user.forgot_password') !!}?</a>
+        </p>
+    </div>
+</div>
 {!! Form::close() !!}
-
-@section('js')
-    <script>
-        var login = new Vue({
-            el: '#login-form',
-            data(){
-                return {
-                    loginDetails: {
-                        username: '',
-                        password: ''
-                    },
-                    formErrors: {},
-                    errors: {}
-                }
-            },
-            methods: {
-                loginPost: function (event) {
-
-                    let vm = this;
-
-                    event.preventDefault();
-
-                    // perform ajax
-                    axios.post('/login', vm.loginDetails)
-                            .then(function (response) {
-                                console.log(response);
-                            })
-                            .catch(function (error) {
-                                var errors = error.response.data;
-                                vm.formErrors = errors;
-                            });
-                }
-
-            }
-        });
-    </script>
-@stop
