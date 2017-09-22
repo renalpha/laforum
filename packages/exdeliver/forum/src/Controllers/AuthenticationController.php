@@ -4,9 +4,9 @@ namespace Exdeliver\Forum\Controllers;
 
 use Exdeliver\Forum\Requests\LoginFormRequest;
 use Exdeliver\Forum\Requests\RegisterFormRequest;
+use Exdeliver\Forum\Requests\RequestPasswordFormRequest;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class AuthenticationController extends Controller
@@ -32,6 +32,27 @@ class AuthenticationController extends Controller
         return view('forum::pages.user.register');
     }
 
+    public function getRequestPassword()
+    {
+        if(\Auth::check())
+        {
+            return redirect()
+                ->to('/');
+        }
+
+        return view('forum::pages.user.request_password');
+    }
+
+    public function getRequestPasswordCode($code = null)
+    {
+        if(isset($code))
+        {
+            return view('forum::pages.user.login');
+        }
+
+        return redirect()->to('/');
+    }
+
     public function getProfile()
     {
         return view('forum::pages.user.profile');
@@ -51,7 +72,7 @@ class AuthenticationController extends Controller
 
         $result = \UserService::login($request);
 
-        return json_encode(['status' => $result]);
+        return json_encode(['status' => $result, 'redirect' => redirect()->intended('dashboard')]);
     }
 
     public function register(RegisterFormRequest $request)
@@ -60,5 +81,12 @@ class AuthenticationController extends Controller
 
         // expects array as result
         return json_encode($result);
+    }
+
+    public function requestPassword(RequestPasswordFormRequest $request)
+    {
+        $result = \UserService::requestPassword($request);
+
+        return $result;
     }
 }
